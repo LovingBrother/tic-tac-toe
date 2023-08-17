@@ -42,6 +42,7 @@ const Board = () => {
       }
     } else if (check.checkTie()) {
       setMessage("IT'S A TIE!!!");
+      setWinner('No one');
       setEnd(true);
     }
   }, [squares, xIsNext, winner]);
