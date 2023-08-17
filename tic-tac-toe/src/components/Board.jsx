@@ -34,6 +34,7 @@ const Board = () => {
       } else {
         setMessage(`Alwys gotta watch out for those diagonals`);
         console.log('Diag')
+        setEnd(true)
       }
     } else if (check.checkTie()) {
         setMessage('IT\'S A TIE!!!')
@@ -61,7 +62,7 @@ const Board = () => {
         <Squares value={squares[7]} onSquareClick={() => handleClick(7)} />
         <Squares value={squares[8]} onSquareClick={() => handleClick(8)} />
       </div>
-
+      {end? <div className="absolute"></div>:''}
     </div>
   );
 };
