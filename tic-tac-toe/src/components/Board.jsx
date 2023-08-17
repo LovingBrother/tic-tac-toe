@@ -23,7 +23,8 @@ const Board = () => {
 
   const handleReset = (i) => {
     setEnd(i);
-    setSquares(Array(9).fill(null))
+    setSquares(Array(9).fill(null));
+    setXIsNext(true);
   };
 
   useEffect(() => {
@@ -33,9 +34,7 @@ const Board = () => {
       console.log(`Winner: ${winner}`);
       setEnd(true);
       if (check.checkRow() || check.checkColumn()) {
-        setMessage(
-          `Straight, obvious lines. Shouldv've seen it coming`
-        );
+        setMessage(`Straight, obvious lines. Shouldv've seen it coming`);
         console.log("Straight");
       } else {
         setMessage(`Always gotta watch out for those diagonals`);
@@ -52,6 +51,7 @@ const Board = () => {
       <div className="game-title">
         <h3> Tic Tac Toe</h3>
         <h4>Player 1: X; Player 2: O</h4>
+        <h4>Next Player: {xIsNext? 'Player 1': 'Player 2'}</h4>
       </div>
       <div className="board-row">
         <Squares value={squares[0]} onSquareClick={() => handleClick(0)} />
