@@ -1,11 +1,10 @@
 import './App.css'
-
-function App() {
+import Reset from './components/Reset'
+export default function App() {
   return (
-    <div className=''>
-
+    <div className='page'>
+      <Reset />
     </div>
   )
 }
 
-export default App
