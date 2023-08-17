@@ -80,6 +80,7 @@ const Board = () => {
       ) : (
         ""
       )}
+      <p><a  href="https://github.com/Benny-Nwaro">Aroh Ebenezer</a> | <a href="https://github.com/kingalingaling">King Eshiebor</a> | <a href="https://github.com/LovingBrother">Jonah Samuel</a> </p>
     </div>
   );
 };

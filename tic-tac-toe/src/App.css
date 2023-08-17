@@ -64,6 +64,22 @@ h6 {
   font-size: 12px;
 }
 
+a:active {
+  color: white;
+  text-decoration: none;
+  background-color: transparent;
+}
+
+a:link {
+  color: white;
+  text-decoration: none;
+  background-color: transparent;
+}
+
+p{
+  color: white;
+}
+
 code {
   font-size: 1.2em;
 }
