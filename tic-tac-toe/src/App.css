@@ -17,7 +17,7 @@
   width: 70%;
   height: 40%;
   text-align: center;
-  background-color: rgb(60, 9, 225);
+  background-color: rgb(0,0,0);
   border-radius: 5px;
 }
 .button {
@@ -26,6 +26,12 @@
   text-align: center;
   background-color: rgb(71, 86, 71);
   border-radius: 20px;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: rgb(255, 255, 255, 0.9);
+  color: black;
 }
 
 h1 {
@@ -125,6 +131,9 @@ body {
 
 .absolute {
   position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   top: 0;
   height: 100%;
   width: 100%;

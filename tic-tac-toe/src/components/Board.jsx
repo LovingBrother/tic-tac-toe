@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Squares from "./Squares";
 import checkWin from "../checkWin";
+import Reset from "./Reset";
 
 const Board = () => {
   //   const [value, setValue] = useState(null);
@@ -20,25 +21,29 @@ const Board = () => {
     setXIsNext(!xIsNext);
   };
 
+  const handleReset = (i) => {
+    setEnd(i);
+    setSquares(Array(9).fill(null))
+  };
+
   useEffect(() => {
     const check = new checkWin(squares);
     if (check.checkWin()) {
       setWinner(xIsNext ? "Player 2" : "Player 1");
-      console.log(`Winner: ${winner}`)
-      setEnd(true)
+      console.log(`Winner: ${winner}`);
+      setEnd(true);
       if (check.checkRow() || check.checkColumn()) {
         setMessage(
-          `Straight, obvious lines. Shouldv've seen it coming ${winner}`
+          `Straight, obvious lines. Shouldv've seen it coming`
         );
-        console.log('Straight')
+        console.log("Straight");
       } else {
-        setMessage(`Alwys gotta watch out for those diagonals`);
-        console.log('Diag')
-        setEnd(true)
+        setMessage(`Always gotta watch out for those diagonals`);
+        console.log("Diag");
       }
     } else if (check.checkTie()) {
-        setMessage('IT\'S A TIE!!!')
-        setEnd(true)
+      setMessage("IT'S A TIE!!!");
+      setEnd(true);
     }
   }, [squares, xIsNext, winner]);
 
@@ -46,6 +51,7 @@ const Board = () => {
     <div className="relative">
       <div className="game-title">
         <h3> Tic Tac Toe</h3>
+        <h4>Player 1: X; Player 2: O</h4>
       </div>
       <div className="board-row">
         <Squares value={squares[0]} onSquareClick={() => handleClick(0)} />
@@ -62,7 +68,17 @@ const Board = () => {
         <Squares value={squares[7]} onSquareClick={() => handleClick(7)} />
         <Squares value={squares[8]} onSquareClick={() => handleClick(8)} />
       </div>
-      {end? <div className="absolute"></div>:''}
+      {end ? (
+        <div className="absolute">
+          <Reset
+            winner={winner}
+            message={message}
+            onResetClick={() => handleReset(false)}
+          />
+        </div>
+      ) : (
+        ""
+      )}
     </div>
   );
 };

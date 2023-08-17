@@ -38,7 +38,7 @@ export default class checkWin {
     checkTie () {
         let count = 0;
         this.data.forEach(cell => {
-            if(cell !== ''){
+            if(cell !== null){
                 count ++;
             }
             

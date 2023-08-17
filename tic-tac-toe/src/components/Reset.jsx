@@ -1,10 +1,10 @@
-// import "../App.css";
 
-export default function Reset() {
+export default function Reset(props) {
   return (
     <div className="container">
-      <h2>Player 1 won the game</h2>
-      <div className="button">Reset</div>
+      <h2>{props.winner} won the game</h2>
+      <p>{props.message}</p>
+      <div className="button" onClick={props.onResetClick}>Reset</div>
     </div>
   );
 }
