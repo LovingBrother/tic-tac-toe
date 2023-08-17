@@ -101,3 +101,15 @@ body {
   background-color: aqua;
 
 }
+
+/* .relative {
+  position: relative;
+}
+
+.absolute {
+  position:absolute;
+  height: 100vh;
+  width: 100%;
+  background-color: rgb(255,255,255,0.6);
+  z-index: 10;
+} */

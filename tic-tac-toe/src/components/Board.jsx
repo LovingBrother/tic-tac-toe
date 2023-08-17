@@ -1,22 +1,48 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Squares from "./Squares";
+import checkWin from "../checkWin";
 
 const Board = () => {
   //   const [value, setValue] = useState(null);
   const [squares, setSquares] = useState(Array(9).fill(null));
   const [xIsNext, setXIsNext] = useState(true);
+  const [winner, setWinner] = useState(null);
+  const [end, setEnd] = useState(false);
+  const [message, setMessage] = useState("");
+
   const handleClick = (i) => {
     if (squares[i]) {
-        return
+      return;
     }
     const nextSquares = squares.slice();
     xIsNext ? (nextSquares[i] = "X") : (nextSquares[i] = "O");
     setSquares(nextSquares);
-    setXIsNext(!xIsNext)
+    setXIsNext(!xIsNext);
   };
 
+  useEffect(() => {
+    const check = new checkWin(squares);
+    if (check.checkWin()) {
+      setWinner(xIsNext ? "Player 2" : "Player 1");
+      console.log(`Winner: ${winner}`)
+      setEnd(true)
+      if (check.checkRow() || check.checkColumn()) {
+        setMessage(
+          `Straight, obvious lines. Shouldv've seen it coming ${winner}`
+        );
+        console.log('Straight')
+      } else {
+        setMessage(`Alwys gotta watch out for those diagonals`);
+        console.log('Diag')
+      }
+    } else if (check.checkTie()) {
+        setMessage('IT\'S A TIE!!!')
+        setEnd(true)
+    }
+  }, [squares, xIsNext, winner]);
+
   return (
-    <>
+    <div className="relative">
       <div className="game-title">
         <h3> Tic Tac Toe</h3>
       </div>
@@ -35,7 +61,8 @@ const Board = () => {
         <Squares value={squares[7]} onSquareClick={() => handleClick(7)} />
         <Squares value={squares[8]} onSquareClick={() => handleClick(8)} />
       </div>
-    </>
+
+    </div>
   );
 };
 

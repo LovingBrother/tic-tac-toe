@@ -1,35 +1,34 @@
 export default class checkWin {
     constructor(data) {
-        this.boardData = data;
+        this.data = data;
+        this.win =false
     }
 
     checkRow() {
-        let win = false;
         for (let i=0;i<9;i+=3) {
-            win |= (this.data[i] === this.data[i+1] && 
+            this.win |= (this.data[i] === this.data[i+1] && 
                 this.data[i] === this.data[i+2] && 
-                this.data[i] !== '')
+                this.data[i] !== null)
         }
-        return win;
+        return this.win;
     }
 
     checkColumn() {
-        let win = false;
         for (let i =0; i < 3; i++){
-            win |= (this.data[i] === this.data[i + 3] &&
+            this.win |= (this.data[i] === this.data[i + 3] &&
                 this.data[i] === this.data[i+6] && 
-                this.data[i] !== '')
+                this.data[i] !== null)
         }
 
-        return win;
+        return this.win;
 
     }
 
     checkDiagonal() {
         return ((this.data[0] === this.data[4] &&
-            this.data[0] === this.data[8] && this.data[0] !=='') ||
+            this.data[0] === this.data[8] && this.data[0] !==null) ||
             (this.data[2] === this.data[4] && this.data[2] === this.data[6] &&
-                this.data[2] !== ''));
+                this.data[2] !== null));
     }
 
     checkWin() {
@@ -44,8 +43,11 @@ export default class checkWin {
             }
             
         });
-
-        return count === 9;
+        if (count===9 && !this.checkWin()) {
+            return true
+        } else {
+            return false
+        }
     }
     
 }
